@@ -1,5 +1,7 @@
 import cart from './cart.png';
 import p_img2_1 from './p_img2_1.png';
+import about_img from './about_img.png';
+import contact1 from './contact1.png';
 import bin from './bin.png';
 import stripe from './stripe.png';
 import razorpay from './razorpay.png';
@@ -39,6 +41,8 @@ export const assets = {
   cart,
   stripe,
   razorpay,
+  contact1,
+  about_img,
     done,
     bin,
   stars,
