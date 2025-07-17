@@ -10,31 +10,32 @@ const createToken = (id)=>{
 
 
 // route for user login
-const loginUser = async (req,res)=> {
 
-    try{
-        const{email,password} = req.body;
-        const user = await userModel.findOne({email});
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-        if(!user){
-            res.json({sucess:false, message:"User doesn't exists"})
-        }
-        const isMatch = await bcrypt.compare(password,user.password);
-        if(isMatch){
-            const token = createToken(user._id)
-            res.json({sucess:true, token})
-        }
-        else{
-            res.json({sucess:false, message:"Invalid credentials"})
-        }
+    const user = await userModel.findOne({ email });
 
-    }catch(error){
-        console.log(error);
-        res.json({sucess:false,message:error.message})
-        
+    if (!user) {
+      return res.json({ success: false, message: "User doesn't exist" }); // ⬅️ Add return
     }
 
-}
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
+      const token = createToken(user._id);
+      return res.json({ success: true, token }); // ⬅️ Add return
+    } else {
+      return res.json({ success: false, message: "Invalid credentials" }); // ⬅️ Add return
+    }
+
+  } catch (error) {
+    console.log(error);
+    return res.json({ success: false, message: error.message }); // ⬅️ Add return
+  }
+};
+
 
 //route for user registration
 const registerUser = async (req,res)=>{

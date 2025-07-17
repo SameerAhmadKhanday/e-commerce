@@ -23,6 +23,7 @@ import { Navigate } from 'react-router-dom';
 
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL
+export const currency = '$'
 
 
 
